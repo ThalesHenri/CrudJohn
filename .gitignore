@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.migrations/
+
+# Environment variables
+.env
+.env.*
+
+# Django static files
+/static/
+/media/
+
+# Django cache files
+*.swp
+*~
+*.swo
+*.swn
+
+# macOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+
+# Visual Studio Code settings
+.vscode/
+
+# PyCharm
+.idea/
