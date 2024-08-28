@@ -5,85 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'main/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
 </head>
 <body>
     <header>
         <h1>CRUD Dashboard</h1>
         <nav>
-            <a href="#list">List Items</a>
-            <a href="#add">Add Item</a>
+            <ul>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Clientes</a></li>
+                <li><a href="#">Compras</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <!-- List Items Section -->
-        <section id="list">
-            <h2>Item List</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example item rows -->
-                    <tr>
-                        <td>1</td>
-                        <td>Item 1</td>
-                        <td>Description for item 1</td>
-                        <td>
-                            <a href="#update" class="button">Update</a>
-                            <a href="#delete" class="button">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Produtos Section -->
+        <section id="product-menu">
+            <h2>Gerenciar Produtos</h2>
+            <ul>
+                <li><a href="#" class="submenu-link">Cadastrar Produto</a></li>
+                <li><a href="#" class="submenu-link">Ver Produtos Cadastrados</a></li>
+            </ul>
         </section>
 
-        <!-- Add Item Section -->
-        <section id="add">
-            <h2>Add New Item</h2>
-            <form action="#" method="post">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-                
-                <button type="submit" class="button">Add Item</button>
-            </form>
+        <!-- Clientes Section -->
+        <section id="client-menu">
+            <h2>Gerenciar Clientes</h2>
+            <ul>
+                <li><a href="#" class="submenu-link">Cadastrar Cliente</a></li>
+                <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li>
+            </ul>
         </section>
 
-        <!-- Update Item Section -->
-        <section id="update">
-            <h2>Update Item</h2>
-            <form action="#" method="post">
-                <label for="item-id">Item ID:</label>
-                <input type="text" id="item-id" name="item-id" required>
-                
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-                
-                <button type="submit" class="button">Update Item</button>
-            </form>
-        </section>
-
-        <!-- Delete Item Section -->
-        <section id="delete">
-            <h2>Delete Item</h2>
-            <form action="#" method="post">
-                <label for="item-id">Item ID:</label>
-                <input type="text" id="item-id" name="item-id" required>
-                
-                <button type="submit" class="button">Delete Item</button>
-            </form>
+        <!-- Compras Section -->
+        <section id="purchase-menu">
+            <h2>Gerenciar Compras</h2>
+            <ul>
+                <li><a href="#" class="submenu-link">Cadastrar Nova Compra</a></li>
+                <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li>
+            </ul>
         </section>
     </main>
 
