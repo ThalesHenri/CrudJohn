@@ -19,29 +19,31 @@
     </header>
 
     <main>
-        <section id="product-menu">
-            <h2>Gerenciar Produtos</h2>
-            <ul>
-                <li><a href="#" class="submenu-link">Cadastrar Produto</a></li>
-                <li><a href="#" class="submenu-link">Ver Produtos Cadastrados</a></li>
-            </ul>
-        </section>
+        {%block content%}
+            <section id="product-menu">
+                <ul> 
+                    <h2>Gerenciar Produtos</h2>
+                    <li><a href="/cadastrarProdutos/" class="submenu-link">Cadastrar Produto</a></li>
+                    <li><a href="/mostrarProdutos/" class="submenu-link">Ver Produtos Cadastrados</a></li>
+                </ul>
+            </section>
 
-        <section id="client-menu">
-            <h2>Gerenciar Clientes</h2>
-            <ul>
-                <li><a href="#" class="submenu-link">Cadastrar Cliente</a></li>
-                <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li>
-            </ul>
-        </section>
+            <section id="client-menu">
+                <ul>
+                    <h2>Gerenciar Clientes</h2>
+                    <li><a href="#" class="submenu-link">Cadastrar Cliente</a></li>
+                    <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li>
+                </ul>
+            </section>
 
-        <section id="purchase-menu">
-            <h2>Gerenciar Compras</h2>
-            <ul>
-                <li><a href="#" class="submenu-link">Cadastrar Nova Compra</a></li>
-                <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li>
-            </ul>
-        </section>
+            <section id="purchase-menu">
+                <ul>
+                    <h2>Gerenciar Compras</h2>
+                    <li><a href="#" class="submenu-link">Cadastrar Nova Compra</a></li>
+                    <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li>
+                </ul>
+            </section>
+        {%endblock%}
     </main>
 
     <footer>
