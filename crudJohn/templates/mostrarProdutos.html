@@ -1,4 +1,18 @@
 {% extends "index.html" %}
 {% block content %}
-<h1> bye tolas! </h1>
+
+        <div class="product-list">
+            {% for produto in produtos %}
+                <div class="product-item">
+                    <h3>{{ produto.nome }}</h3>
+                    <p>Preço: R$ {{ produto.preco }}</p>
+                        {% if produto.foto %}
+                            <img src="{{ FotoUrl }}{{ produto.foto }}" alt="{{ produto.nome }}" class="produtoFoto">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}                 
+                </div>
+            {% endfor %}
+        </div>
+
 {% endblock content %}

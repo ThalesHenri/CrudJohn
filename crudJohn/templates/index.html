@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,44 +10,51 @@
 <body>
 
     <header>
-        <div class="logo">T&J PROJECTS</div>
-        <nav>
-            <a href="#">Produtos</a>
-            <a href="#">Clientes</a>
-            <a href="#">Compras</a>
-        </nav>
+        <div class="container">
+            <div class="logo">T&J PROJECTS</div>
+            <nav>
+                <a href="#">Produtos</a>
+                <a href="#">Clientes</a>
+                <a href="#">Compras</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        {%block content%}
+        <div class="container">
+            {%block content%}
             <section id="product-menu">
+                <h2>Gerenciar Produtos</h2>
                 <ul> 
-                    <h2>Gerenciar Produtos</h2>
                     <li><a href="/cadastrarProdutos/" class="submenu-link">Cadastrar Produto</a></li>
-                    <li><a href="/mostrarProdutos/" class="submenu-link">Ver Produtos Cadastrados</a></li>
+                    <li><a href="/mostrarProdutos/" class="submenu-link">Ver Produtos Cadastrados</a></li><br><br>
                 </ul>
             </section>
 
             <section id="client-menu">
+                <h2>Gerenciar Clientes</h2>
                 <ul>
-                    <h2>Gerenciar Clientes</h2>
                     <li><a href="#" class="submenu-link">Cadastrar Cliente</a></li>
-                    <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li>
+                    <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li><br><br>
                 </ul>
             </section>
 
             <section id="purchase-menu">
+                <h2>Gerenciar Compras</h2>
                 <ul>
-                    <h2>Gerenciar Compras</h2>
                     <li><a href="#" class="submenu-link">Cadastrar Nova Compra</a></li>
-                    <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li>
+                    <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li><br>
                 </ul>
             </section>
-        {%endblock%}
+            {%endblock%}
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 T&J PROJECTS</p>
+        <div class="container">
+            <p>&copy; 2024 T&J PROJECTS. Todos os direitos reservados.</p>
+        </div>
     </footer>
+
 </body>
 </html>

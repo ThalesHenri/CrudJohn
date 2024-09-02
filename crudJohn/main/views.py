@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from .forms import ProdutoForm
+from .models import Produto
 
-# Create your views here.
 
 def home(response):
     return render(response,'index.html')
@@ -15,13 +15,15 @@ def cadastrarProdutos(response):
 
 
 def mostrarProdutos(response):
-    return render(response,'mostrarProdutos.html')
+    produto = Produto.objects.all()
+    return render(response, 'mostrarProdutos.html', {'mostrarProdutos': produto})
 
 
 def cadastrarProdutosEvent(response):
     if response.method == 'POST':
-        form = ProdutoForm(response.POST)
+        form = ProdutoForm(response.POST, response.FILES)
         if form.is_valid():
-            form.save()
+            produto = form.save()
+            print(f'o caminho da foto é:{produto.foto}')
             return HttpResponse('sucess')
     return HttpResponse('failed')

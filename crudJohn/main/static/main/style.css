@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
+    font-family: 'Arial', sans-serif;
+    background-color: #c0c8d1;
     color: #333;
     margin: 0;
     padding: 0;
@@ -9,133 +9,139 @@ body {
     min-height: 100vh;
 }
 
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo{
+    font-size: 20px;
+}
+
 header {
-    background-color:#00448C;
+    background-color: #003e7e;
     color: white;
-    padding: 30px 70px;
+    padding: 15px 0;
+    box-shadow: 1px 1px 7px gray;
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 8px black;
 }
 
-.logo {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+header .logo {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 35px;
     font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
 }
 
-nav {
+header nav {
     display: flex;
     gap: 20px;
 }
 
-nav a {
+header nav a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    padding: 15px 30px;
-    transition: background 0.3s;
-    box-shadow: 0 4px 8px black;
-    border-radius: 10px;
+    font-size: 20px;
+    padding: 20px 10px;
+    transition: background-color 0.3s ease;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-nav a:hover {
-    background: white;
-    color: #00448C;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px black;
+header nav a:hover {
+    background-color: #002b5c;
 }
 
 main {
     flex: 1;
-    padding: 20px;
+    padding: 20px 0;
 }
 
-section {
-    background-color: #fff;
+main .container {
+    background-color: whitesmoke;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px black;
-    margin-bottom: 20px;
-    padding: 20px;
+    box-shadow: 1px 1px 7px gray;
 }
 
 h2 {
     font-size: 30px;
-    color: #00448C;
-    border-bottom: 2px solid #00448C;
+    color: #003e7e;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #003e7e;
     padding-bottom: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .submenu-link {
     display: inline-block;
     margin: 10px 0;
     padding: 15px 25px;
-    background-color: #00448C;
+    background-color: #003e7e;
     color: white;
     text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0 2px 8px black;
-    font-size: 18px;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 5px 5px 10px gray;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .submenu-link:hover {
-    background-color: white;
-    color: #00449c;
+    background-color: #0056a4;
+    transform: translateY(-2px);
 }
 
-li {
-    list-style-type: none;
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-item h3 {
+    font-size: 20px;
+    color: #003e7e;
+    margin-bottom: 10px;
+}
+
+.product-item p {
+    margin: 5px 0;
+    color: #555;
 }
 
 footer {
-    background-color: #00448C;
-    color: #fff;
+    background-color: #003e7e;
+    color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 15px 0;
     margin-top: auto;
 }
 
 footer p {
     margin: 0;
     font-size: 14px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #00448C;
-    border-radius: 10px;
-    background-color: #fff;
-    color: #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-control::placeholder {
-    color: #999;
-    font-style: italic;
-}
-
-.form-control:focus {
-    border-color: #00448C;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    outline: none;
-}
-
-.form-control[type="file"] {
-    padding: 10px;
-    border: none;
-    box-shadow: none;
-    background-color: #f4f6f9;
-}
-
-@media (max-width: 768px) {
-    .form-control {
-        font-size: 14px;
-        padding: 10px;
-    }
 }

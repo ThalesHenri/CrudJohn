@@ -7,7 +7,7 @@ class Produto(models.Model):
     quantidade = models.IntegerField()
     preco = models.DecimalField(max_digits=100, decimal_places=2)
     peso = models.DecimalField(max_digits=100, decimal_places=2)
-    foto = models.ImageField(upload_to='media/', blank=True, null=True)
+    foto = models.ImageField(upload_to='Imagens_Produto/', blank=True, null=True)
     def _str_(self):
         return self.nome
     
