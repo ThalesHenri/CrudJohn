@@ -16,6 +16,7 @@ class Compras(models.Model):
     valorPago = models.DecimalField(max_digits=100, decimal_places=2)
     pagamento = models.BooleanField(default=True)
     produtosComprados = models.IntegerField()
+    quantidadeProdutos = models.IntegerField()
     def _str_(self):
         texto = f"{self.cliente} >>{self.produto}"
         return texto
