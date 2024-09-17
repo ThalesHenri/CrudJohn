@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,48 +8,53 @@
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
 </head>
 <body>
+
     <header>
-        <h1>CRUD Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Clientes</a></li>
-                <li><a href="#">Compras</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <a href="/"><div class="logo">T&J PROJECTS</div></a>
+            <nav>
+                <a href="/mostrarProdutos/">Produtos</a>
+                <a href="#">Clientes</a>
+                <a href="#">Compras</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Produtos Section -->
-        <section id="product-menu">
-            <h2>Gerenciar Produtos</h2>
-            <ul>
-                <li><a href="#" class="submenu-link">Cadastrar Produto</a></li>
-                <li><a href="#" class="submenu-link">Ver Produtos Cadastrados</a></li>
-            </ul>
-        </section>
+        <div class="container">
+            {%block content%}
+            <section id="product-menu">
+                <h2>Gerenciar Produtos</h2>
+                <ul> 
+                    <li><a href="/cadastrarProdutos/" class="submenu-link">Cadastrar Produto</a></li>
+                    <li><a href="/mostrarProdutos/" class="submenu-link">Ver Produtos Cadastrados</a></li><br><br>
+                </ul>
+            </section>
 
-        <!-- Clientes Section -->
-        <section id="client-menu">
-            <h2>Gerenciar Clientes</h2>
-            <ul>
-                <li><a href="#" class="submenu-link">Cadastrar Cliente</a></li>
-                <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li>
-            </ul>
-        </section>
+            <section id="client-menu">
+                <h2>Gerenciar Clientes</h2>
+                <ul>
+                    <li><a href="#" class="submenu-link">Cadastrar Cliente</a></li>
+                    <li><a href="#" class="submenu-link">Ver Clientes Cadastrados</a></li><br><br>
+                </ul>
+            </section>
 
-        <!-- Compras Section -->
-        <section id="purchase-menu">
-            <h2>Gerenciar Compras</h2>
-            <ul>
-                <li><a href="#" class="submenu-link">Cadastrar Nova Compra</a></li>
-                <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li>
-            </ul>
-        </section>
+            <section id="purchase-menu">
+                <h2>Gerenciar Compras</h2>
+                <ul>
+                    <li><a href="#" class="submenu-link">Cadastrar Nova Compra</a></li>
+                    <li><a href="#" class="submenu-link">Ver Compras Realizadas</a></li><br>
+                </ul>
+            </section>
+            {%endblock%}
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 CRUD Dashboard</p>
+        <div class="container">
+            <p>&copy; 2024 T&J PROJECTS. Todos os direitos reservados.</p>
+        </div>
     </footer>
+
 </body>
 </html>

@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% block content %}
+
+        <div class="product-list">
+<<<<<<< HEAD
+            {% if mostrarProdutos %}
+                {% for produto in mostrarProdutos %}
+=======
+            {% if produtos %}
+                {% for produto in produtos %}
+>>>>>>> 03743f6f350c164b83c468f87d2c647d19dd57d8
+                <div class="product-item">
+                    <h3>{{ produto.nome }}</h3>
+                    <p>Preço: R$ {{ produto.preco }}</p>
+                        {% if produto.foto %}
+                            <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}" class="produtoFoto">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}                 
+                </div>
+                {% endfor %}
+            {% else %}
+                <h3>Não há produtos disponíveis</h3>
+            {% endif %}
+        </div>
+
+{% endblock content %}
