@@ -16,7 +16,8 @@ def cadastrarProdutos(response):
 
 def mostrarProdutos(response):
     produto = Produto.objects.all()
-    return render(response, 'mostrarProdutos.html', {'mostrarProdutos': produto})
+    context = {'mostrarProdutos': produto}
+    return render(response, 'mostrarProdutos.html', context)
 
 
 def cadastrarProdutosEvent(response):

@@ -2,17 +2,21 @@
 {% block content %}
 
         <div class="product-list">
-            {% for produto in produtos %}
+            {% if mostrarProdutos %}
+                {% for produto in mostrarProdutos %}
                 <div class="product-item">
                     <h3>{{ produto.nome }}</h3>
                     <p>Preço: R$ {{ produto.preco }}</p>
                         {% if produto.foto %}
-                            <img src="{{ FotoUrl }}{{ produto.foto }}" alt="{{ produto.nome }}" class="produtoFoto">
+                            <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}" class="produtoFoto">
                         {% else %}
                             <p>No image available</p>
                         {% endif %}                 
                 </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h3>Não há produtos disponíveis</h3>
+            {% endif %}
         </div>
 
 {% endblock content %}

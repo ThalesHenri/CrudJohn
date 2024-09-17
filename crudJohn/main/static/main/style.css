@@ -145,3 +145,10 @@ footer p {
     margin: 0;
     font-size: 14px;
 }
+.produtoFoto{
+    height: 200px;
+}
+.container a{
+    text-decoration: none;
+    color: white;
+}
