@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import HttpResponse
-from .forms import ProdutoForm
-from .models import Produto
+from django.shortcuts import render,  HttpResponse, get_object_or_404, redirect
+from .forms import ProdutoForm, ClienteForm, ComprasForm
+from .models import Produto, Cliente, Compras
 
 
 def home(response):
@@ -13,15 +12,35 @@ def cadastrarProdutos(response):
     context = {'form':form}
     return render(response,'cadastroProdutos.html', context)
 
+ 
+def cadastrarClientes(response):
+    form = ClienteForm()
+    context = {'form': form}
+    return render(response, 'cadastroCliente.html', context)
+
+
+def cadastrarCompras(response):
+    form = ComprasForm()
+    context = {'form': form}
+    return render(response, 'cadastroCompras.html', context)
+
 
 def mostrarProdutos(response):
     produto = Produto.objects.all()
-<<<<<<< HEAD
     context = {'mostrarProdutos': produto}
-=======
-    context = {'produtos': produto}
->>>>>>> 03743f6f350c164b83c468f87d2c647d19dd57d8
     return render(response, 'mostrarProdutos.html', context)
+
+
+def mostrarClientes(response):
+    cliente = Cliente.objects.all()
+    context = {'mostrarClientes': cliente}
+    return render(response, 'mostrarClientes.html', context)
+
+
+def mostrarCompras(response):
+    compras = Compras.objects.all()
+    context = {'mostrarCompras': compras}
+    return render(response, 'mostrarCompras.html', context)
 
 
 def cadastrarProdutosEvent(response):
@@ -29,6 +48,30 @@ def cadastrarProdutosEvent(response):
         form = ProdutoForm(response.POST, response.FILES)
         if form.is_valid():
             produto = form.save()
-            print(f'o caminho da foto é:{produto.foto}')
-            return HttpResponse('sucess')
+            return HttpResponse('Produto cadastrado com sucesso!')
     return HttpResponse('failed')
+
+
+def cadastrarClientesEvent(response):
+    if response.method == 'POST':
+        form = ClienteForm(response.POST)
+        if form.is_valid():
+            cliente = form.save()
+            return HttpResponse('Cliente cadastrado com sucesso!')
+    return HttpResponse('failed')
+
+
+def cadastrarComprasEvent(response):
+    if response.method == 'POST':
+        form = ComprasForm(response.POST)
+        if form.is_valid():
+            compras = form.save()
+            return HttpResponse('Compra cadastrada com sucesso!')
+    return HttpResponse('failed')
+
+
+def marcar_pagamento(response, id):
+    compra = get_object_or_404(Compras, pk=id)
+    compra.pagamento = True
+    compra.save()
+    return redirect('/mostrarCompras/')
