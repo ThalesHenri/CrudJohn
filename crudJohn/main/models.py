@@ -8,7 +8,7 @@ class Produto(models.Model):
     preco = models.DecimalField(max_digits=100, decimal_places=2)
     peso = models.DecimalField(max_digits=100, decimal_places=2)
     foto = models.ImageField(upload_to='Imagens_Produto/', blank=True, null=True)
-    def _str_(self):
+    def __str__(self):
         return self.nome
     
 class Compras(models.Model):

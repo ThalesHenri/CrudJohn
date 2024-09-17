@@ -2,7 +2,8 @@
 {% block content %}
 
         <div class="product-list">
-            {% for produto in produtos %}
+            {% if produtos %}
+                {% for produto in produtos %}
                 <div class="product-item">
                     <h3>{{ produto.nome }}</h3>
                     <p>Preço: R$ {{ produto.preco }}</p>
@@ -12,7 +13,10 @@
                             <p>No image available</p>
                         {% endif %}                 
                 </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h3>Não há produtos disponíveis</h3>
+            {% endif %}
         </div>
 
 {% endblock content %}
