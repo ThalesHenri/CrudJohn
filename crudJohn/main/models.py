@@ -1,6 +1,13 @@
 from django.db import models
 
-# Create your models here.
+class Cliente(models.Model):
+    nome = models.CharField(max_length=100)
+    cpf = models.IntegerField(unique=True)
+    telefone = models.IntegerField(unique=True)
+
+    def __str__(self):
+        return self.nome
+
 
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
@@ -8,22 +15,27 @@ class Produto(models.Model):
     preco = models.DecimalField(max_digits=100, decimal_places=2)
     peso = models.DecimalField(max_digits=100, decimal_places=2)
     foto = models.ImageField(upload_to='Imagens_Produto/', blank=True, null=True)
+
     def __str__(self):
         return self.nome
-    
-class Compras(models.Model):
-    cliente = models.CharField(max_length=100)
-    valorPago = models.DecimalField(max_digits=100, decimal_places=2)
-    pagamento = models.BooleanField(default=True)
-    produtosComprados = models.IntegerField()
-    quantidadeProdutos = models.IntegerField()
-    def _str_(self):
-        texto = f"{self.cliente} >>{self.produto}"
-        return texto
 
-class Cliente(models.Model):
-    nome = models.CharField(max_length=100)
-    cpf = models.IntegerField(unique=True)
-    telefone = models.IntegerField(unique=True)
-    def _str_(self):
-        return self.nome
+
+class Compras(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    valorPago = models.DecimalField(max_digits=100, decimal_places=2)
+    pagamento = models.BooleanField(default=False)
+    produtoComprado = models.ForeignKey(Produto, on_delete=models.CASCADE, default=1)
+    quantidadeProdutos = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.cliente} >> {self.produtoComprado}"
+
+    def save(self, *args, **kwargs):
+        if self.pagamento:
+            produto = self.produtoComprado
+            if produto.quantidade >= self.quantidadeProdutos:
+                produto.quantidade -= self.quantidadeProdutos
+                produto.save()
+            else:
+                raise ValueError("Estoque insuficiente para completar a compra.")
+        super().save(*args, **kwargs)
