@@ -1,22 +1,33 @@
 {% extends "index.html" %}
 {% block content %}
 
-        <div class="product-list">
-            {% if mostrarProdutos %}
-                {% for produto in mostrarProdutos %}
-                <div class="product-item">
-                    <h3>{{ produto.nome }}</h3>
-                    <p>Preço: R$ {{ produto.preco }}</p>
-                        {% if produto.foto %}
-                            <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}" class="produtoFoto">
-                        {% else %}
-                            <p>No image available</p>
-                        {% endif %}                 
-                </div>
-                {% endfor %}
+<div class="product-list">
+    {% if mostrarProdutos %}
+        {% for produto in mostrarProdutos %}
+        <div class="product-item">
+            <h2>{{ produto.nome }}</h2>
+            <p>Preço: R$ {{ produto.preco }}</p>
+            <p>Quantidade Disponível: {{ produto.quantidade }}</p><br>
+            
+            {% if produto.foto %}
+                <img src="{{ produto.foto.url }}" alt="{{ produto.nome }}" class="produtoFoto">
             {% else %}
-                <h3>Não há produtos disponíveis</h3>
+                <p>No image available</p>
             {% endif %}
+            
+            <a href="{% url 'editarProduto' produto.id %}" class="edit-link">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
+
+            <a href="{% url 'deletarProduto' produto.id %}" class="delete-link" onclick="return confirm('Tem certeza que deseja deletar?')">
+                <i class="fas fa-trash"></i>
+            </a>
         </div>
+        {% endfor %}
+    {% else %}
+        <h2>Não há produtos disponíveis</h2>
+    {% endif %}
+</div><br>
+<a href="/" class="submenu-link">Início</a>
 
 {% endblock content %}

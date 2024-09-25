@@ -5,7 +5,7 @@
             {% if mostrarCompras %}
                 {% for compras in mostrarCompras %}
                 <div class="product-item">
-                    <h3>Cliente -> {{ compras.cliente }}</h3>
+                    <h2>Cliente -> {{ compras.cliente }}</h2>
                     <p>Valor Pago: R$ {{ compras.valorPago }}</p>
                     <p>Produto Comprado: {{ compras.produtoComprado }}</p>
                     <p>Quantidade de Produtos: {{ compras.quantidadeProdutos }}</p> 
@@ -19,9 +19,10 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <h3>Não há compras disponíveis</h3>
+                <h2>Não há compras disponíveis</h2>
             {% endif %}
-        </div>
+        </div><br>
+        <a href="/" class="submenu-link">Início</a> 
         
         {% endblock content %}
         

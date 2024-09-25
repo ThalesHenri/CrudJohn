@@ -10,7 +10,7 @@ class Cliente(models.Model):
 
 
 class Produto(models.Model):
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100, unique=True)
     quantidade = models.IntegerField()
     preco = models.DecimalField(max_digits=100, decimal_places=2)
     peso = models.DecimalField(max_digits=100, decimal_places=2)
