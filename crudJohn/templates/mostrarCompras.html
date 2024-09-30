@@ -1,28 +1,34 @@
 {% extends "index.html" %}
 {% block content %}
 
-        <div class="product-list">
-            {% if mostrarCompras %}
-                {% for compras in mostrarCompras %}
-                <div class="product-item">
-                    <h2>Cliente -> {{ compras.cliente }}</h2>
-                    <p>Valor Pago: R$ {{ compras.valorPago }}</p>
-                    <p>Produto Comprado: {{ compras.produtoComprado }}</p>
-                    <p>Quantidade de Produtos: {{ compras.quantidadeProdutos }}</p> 
-                    <p>Status do Pagamento: {{ compras.pagamento|yesno:"Pago,Não Pago" }}</p>
-                    {% if not compras.pagamento %}
-                        <form action="{% url 'marcar_pagamento' compras.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Marcar como Pago</button>
-                        </form>
-                    {% endif %}
-                </div>
-                {% endfor %}
-            {% else %}
-                <h2>Não há compras disponíveis</h2>
+<div class="product-list">
+    {% if mostrarCompras %}
+        {% for compras in mostrarCompras %}
+        <div class="product-item">
+            <h2>Cliente -> {{ compras.cliente }}</h2>
+            <p>Valor Pago: R$ {{ compras.valorPago }}</p>
+            <p>Produto Comprado: {{ compras.produtoComprado }}</p>
+            <p>Quantidade de Produtos: {{ compras.quantidadeProdutos }}</p> 
+            <p>Status do Pagamento: {{ compras.pagamento|yesno:"Pago,Não Pago" }}</p>
+
+            <a href="{% url 'deletarCompra' compras.id %}" class="delete-link" onclick="return confirm('Tem certeza que deseja deletar?')">
+                <i class="fas fa-trash"></i>
+            </a>
+            {% if not compras.pagamento %}
+                <form action="{% url 'marcar_pagamento' compras.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Marcar como Pago</button>
+                </form>
             {% endif %}
-        </div><br>
-        <a href="/" class="submenu-link">Início</a> 
-        
-        {% endblock content %}
+        </div>
+        {% endfor %}
+    {% else %}
+        <h2>Não há compras disponíveis</h2>
+    {% endif %}
+</div><br>
+
+<a href="/cadastrarCompras/" class="submenu-link">Cadastrar Compra</a>
+<a href="/" class="submenu-link">Início</a> 
+
+{% endblock content %}
         

@@ -33,7 +33,7 @@ class Compras(models.Model):
     def save(self, *args, **kwargs):
         if self.pagamento:
             produto = self.produtoComprado
-            if produto.quantidade >= self.quantidadeProdutos:
+            if produto.quantidade >= 1:
                 produto.quantidade -= self.quantidadeProdutos
                 produto.save()
             else:

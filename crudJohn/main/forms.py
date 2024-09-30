@@ -30,7 +30,7 @@ class ProdutoForm(forms.ModelForm):
 
             'foto': forms.ClearableFileInput(attrs={'class': 'form-control'})
 
-                   }
+            }
 
 
 class ClienteForm(forms.ModelForm):
@@ -55,10 +55,8 @@ class ClienteForm(forms.ModelForm):
                                                 'style': 'font-family: verdana, sans-serif;',
                                                 'maxlength': '15'})
 
-        }
+            }
 
-
-from django import forms
 
 class ComprasForm(forms.ModelForm):
     class Meta:
@@ -89,4 +87,4 @@ class ComprasForm(forms.ModelForm):
                                                            'placeholder': 'Quantidade de Produtos',
                                                            'style': 'font-family: verdana, sans-serif;',
                                                            'min': '1'})
-        }
+            }

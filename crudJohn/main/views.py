@@ -10,7 +10,7 @@ def home(response):
 def cadastrarProdutos(response):
     form = ProdutoForm()
     context = {'form': form}
-    return render(response, 'cadastroProtudos.html', context)
+    return render(response, 'cadastroProdutos.html', context)
 
  
 def cadastrarClientes(response):
@@ -43,45 +43,31 @@ def mostrarCompras(response):
     return render(response, 'mostrarCompras.html', context)
 
 
-def cadastrarProdutosEvent(response, produto_id=None):
-    if produto_id:
-        produto = get_object_or_404(Produto, id=produto_id)
-        form = ProdutoForm(response.POST or None, response.FILES or None, instance=produto)
-    else:
-        form = ProdutoForm(response.POST or None, response.FILES or None)
-    if response.method == 'POST':
-        if form.is_valid():
-            nome = form.cleaned_data.get('nome')
-            if Produto.objects.filter(nome=nome).exclude(id=produto_id).exists():
-                mensagemErro = "Já existe um produto com esse nome!"
-                return render(response, 'cadastroProdutos.html', {'form': form, 'produto_id': produto_id, 'mensagemErro': mensagemErro})
-            else:
-                form.save()
-                mensagem = "Produto atualizado com sucesso!" if produto_id else "Produto cadastrado com sucesso!"
-                return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
-    return render(response, 'cadastroProdutos.html', {'form': form, 'produto_id': produto_id})
-
-
-def cadastrarClientesEvent(response, cliente_id=None):
-    if cliente_id:
-        cliente = get_object_or_404(Cliente, id=cliente_id)
-        form = ClienteForm(response.POST or None, instance=cliente)
-    else:
-        form = ClienteForm(response.POST or None)
+def cadastrarProdutosEvent(response):
+    form = ProdutoForm(response.POST or None, response.FILES or None)
     if response.method == 'POST':
         if form.is_valid():
             form.save()
-            mensagem = "Cliente atualizado com sucesso!" if cliente_id else "Cliente cadastrado com sucesso!"
+            mensagem = "Produto cadastrado com sucesso!"
             return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
+    return render(response, 'cadastroProdutos.html', {'form': form})
 
-    return render(response, 'cadastroCliente.html', {'form': form, 'cliente_id': cliente_id})
+
+def cadastrarClientesEvent(response):
+    form = ClienteForm(response.POST or None)
+    if response.method == 'POST':
+        if form.is_valid():
+            form.save()
+            mensagem = "Cliente cadastrado com sucesso!"
+            return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
+    return render(response, 'cadastroCliente.html', {'form': form})
 
 
 def cadastrarComprasEvent(response):
     if response.method == 'POST':
         form = ComprasForm(response.POST)
         if form.is_valid():
-            compras = form.save()
+            form.save()
             mensagem = "Compra cadastrada com sucesso!"
             return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
     mensagemErro = "Erro! Preencha os dados corretamente."
@@ -125,30 +111,6 @@ def compraFalha(response):
     return render(response, 'semSucessoCadastro.html', {'mensagem': mensagem})
 
 
-def editarCliente(response, id):
-    cliente = get_object_or_404(Cliente, id=id)
-    if response.method == 'POST':
-        form = ClienteForm(response.POST, instance=cliente)
-        if form.is_valid():
-            form.save()
-            return redirect('mostrarClientes')
-    else:
-        form = ClienteForm(instance=cliente)
-    return render(response, 'editarCliente.html', {'form': form, 'cliente': cliente})
-
-
-def editarProduto(response, id):
-    produto = get_object_or_404(Produto, id=id)
-    if response.method == 'POST':
-        form = ProdutoForm(response.POST, instance=produto)
-        if form.is_valid():
-            form.save()
-            return redirect('mostrarProdutos')
-    else:
-        form = ProdutoForm(instance=produto)
-    return render(response, 'editarProduto.html', {'form': form, 'produto': produto})
-
-
 def deletarCliente(response, id):
     cliente = get_object_or_404(Cliente, id=id)
     if response.method == "POST":
@@ -163,3 +125,11 @@ def deletarProduto(response, id):
         produto.delete()
         return redirect('mostrarProdutos')
     return render(response, 'deletarProduto.html', {'produto': produto})
+
+
+def deletarCompra(response, id):
+    compra = get_object_or_404(Compras, id=id)
+    if response.method == "POST":
+        compra.delete()
+        return redirect('mostrarCompras')
+    return render(response, 'deletarCompra.html', {'compra': compra})

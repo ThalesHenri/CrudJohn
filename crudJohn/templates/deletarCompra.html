@@ -1,10 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
-    <h2>Tem certeza que deseja deletar o cliente {{ cliente.nome }}?</h2><br>
+    <h2>Tem certeza que deseja deletar a compra {{ compras.cliente }}?</h2><br>
     <form method="POST">
         {% csrf_token %}
         <button type="submit">Deletar</button>
-        <a href="{% url 'mostrarClientes' %}" style="padding: 15px;
+        <a href="{% url 'mostrarCompras' %}" style="padding: 15px;
                                                 margin: 10px 0;
                                                 background-color: #003e7e;
                                                 color: white;

@@ -54,18 +54,15 @@ urlpatterns = [
 
 
     path('compraFalha/', views.compraFalha, name='compraFalha'),
-    
-
-    path('cadastrarClientes/<int:cliente_id>/', views.cadastrarClientesEvent, name='editarCliente'),
-    
+        
 
     path('deletarCliente/<int:id>/', views.deletarCliente, name='deletarCliente'),
 
 
-    path('cadastrarProdutos/<int:produto_id>/', views.cadastrarProdutosEvent, name='editarProduto'),
-
-
     path('deletarProduto/<int:id>/', views.deletarProduto, name='deletarProduto'),
+
+
+    path('deletarCompra/<int:id>/', views.deletarCompra, name='deletarCompra'),
 
 ]
 

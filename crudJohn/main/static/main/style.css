@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: white;
+    background-color: whitesmoke;
     color: #333;
     margin: 0;
     padding: 0;
@@ -123,6 +123,8 @@ ul {
     padding: 20px;
     border-radius: 8px;
     transition: box-shadow 0.3s ease;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .product-item:hover {
@@ -163,10 +165,11 @@ footer p {
 
 .produtoFoto {
     width: 100%; 
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
+    height: 150px; 
+    object-fit: cover;
+    border-radius: 10px;
 }
+
 
 form {
     width: 100%;
@@ -211,15 +214,10 @@ form button:hover {
     margin-top: 10px;
 }
 
-.edit-link, .delete-link {
+.delete-link {
     text-decoration: none;
     font-size: 18px;
     display: inline-block;
-}
-
-.edit-link:hover {
-    color: #0056a4;
-    transform: translateY(-2);
 }
 
 .delete-link:hover {

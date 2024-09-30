@@ -14,10 +14,6 @@
             {% else %}
                 <p>No image available</p>
             {% endif %}
-            
-            <a href="{% url 'editarProduto' produto.id %}" class="edit-link">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
 
             <a href="{% url 'deletarProduto' produto.id %}" class="delete-link" onclick="return confirm('Tem certeza que deseja deletar?')">
                 <i class="fas fa-trash"></i>
@@ -28,6 +24,8 @@
         <h2>Não há produtos disponíveis</h2>
     {% endif %}
 </div><br>
+
+<a href="/cadastrarProdutos/" class="submenu-link">Cadastrar Produto</a>
 <a href="/" class="submenu-link">Início</a>
 
 {% endblock content %}

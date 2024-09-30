@@ -9,10 +9,6 @@
             <p>CPF: {{ cliente.cpf }}</p>  
             <p>Telefone: {{ cliente.telefone }}</p><br>
 
-            <a href="{% url 'editarCliente' cliente.id %}" class="edit-link">
-                <i class="fas fa-pencil-alt"></i>
-            </a>
-
             <a href="{% url 'deletarCliente' cliente.id %}" class="delete-link" onclick="return confirm('Tem certeza que deseja deletar?')">
                 <i class="fas fa-trash"></i>
             </a>
@@ -22,6 +18,8 @@
         <h2>Não há clientes cadastrados</h2>
     {% endif %}
 </div><br>
+
+<a href="/cadastrarClientes/" class="submenu-link">Cadastrar Cliente</a>
 <a href="/" class="submenu-link">Início</a>
 
 {% endblock content %}
