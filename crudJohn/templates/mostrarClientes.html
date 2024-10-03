@@ -7,11 +7,16 @@
         <div class="product-item">
             <h2>{{ cliente.nome }}</h2>
             <p>CPF: {{ cliente.cpf }}</p>  
-            <p>Telefone: {{ cliente.telefone }}</p><br>
+            <p>TELEFONE: {{ cliente.telefone }}</p><br>
+
+            <a href="{% url 'editarClientes' cliente.id %}" class="edit-link">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
 
             <a href="{% url 'deletarCliente' cliente.id %}" class="delete-link" onclick="return confirm('Tem certeza que deseja deletar?')">
                 <i class="fas fa-trash"></i>
             </a>
+
         </div>
         {% endfor %}
     {% else %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .forms import ProdutoForm, ClienteForm, ComprasForm
 from .models import Produto, Cliente, Compras
+from django.contrib import messages
 
 
 def home(response):
@@ -44,22 +45,30 @@ def mostrarCompras(response):
 
 
 def cadastrarProdutosEvent(response):
-    form = ProdutoForm(response.POST or None, response.FILES or None)
     if response.method == 'POST':
+        form = ProdutoForm(response.POST, response.FILES)
         if form.is_valid():
-            form.save()
+            produto = form.save()
             mensagem = "Produto cadastrado com sucesso!"
             return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
+        mensagemErro = "Erro! Preencha os dados corretamente."
+        return render(response, 'semSucessoCadastro.html', {'mensagem': mensagemErro})
+
+    form = ProdutoForm()
     return render(response, 'cadastroProdutos.html', {'form': form})
 
 
 def cadastrarClientesEvent(response):
-    form = ClienteForm(response.POST or None)
     if response.method == 'POST':
+        form = ClienteForm(response.POST)
         if form.is_valid():
-            form.save()
+            cliente = form.save()
             mensagem = "Cliente cadastrado com sucesso!"
             return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
+        mensagemErro = "Erro! Preencha os dados corretamente."
+        return render(response, 'semSucessoCadastro.html', {'mensagem': mensagemErro})
+
+    form = ClienteForm()
     return render(response, 'cadastroCliente.html', {'form': form})
 
 
@@ -67,7 +76,7 @@ def cadastrarComprasEvent(response):
     if response.method == 'POST':
         form = ComprasForm(response.POST)
         if form.is_valid():
-            form.save()
+            compras = form.save()
             mensagem = "Compra cadastrada com sucesso!"
             return render(response, 'sucessoCadastro.html', {'mensagem': mensagem})
     mensagemErro = "Erro! Preencha os dados corretamente."
@@ -75,10 +84,14 @@ def cadastrarComprasEvent(response):
 
 
 def marcar_pagamento(response, id):
-    compra = get_object_or_404(Compras, pk=id)
+    compra = get_object_or_404(Compras, id=id)
     compra.pagamento = True
     compra.save()
     return redirect('/mostrarCompras/')
+
+
+def erroEstoqueInsuficiente(response):
+    return render(response, 'erroEstoque.html')
 
 
 def produtoSucesso(response):
@@ -109,6 +122,45 @@ def clienteFalha(response):
 def compraFalha(response):
     mensagem = "Erro! Preencha os dados corretamente."
     return render(response, 'semSucessoCadastro.html', {'mensagem': mensagem})
+
+
+def editarProdutos(response, id):
+    produto = get_object_or_404(Produto, id=id)
+    if response.method == 'POST':
+        form = ProdutoForm(response.POST, response.FILES, instance=produto)
+        if form.is_valid():
+            form.save()
+            messages.success(response, 'Produto atualizado com sucesso!')
+            return redirect('mostrarProdutos')
+    else:
+        form = ProdutoForm(instance=produto)
+    return render(response, 'editarProdutos.html', {'form': form, 'produto': produto})
+
+
+def editarClientes(response, id):
+    cliente = get_object_or_404(Cliente, id=id)
+    if response.method == 'POST':
+        form = ClienteForm(response.POST, response.FILES, instance=cliente)
+        if form.is_valid():
+            form.save()
+            messages.success(response, 'Cliente atualizado com sucesso!')
+            return redirect('mostrarClientes')
+    else:
+        form = ClienteForm(instance=cliente)
+    return render(response, 'editarClientes.html', {'form': form, 'cliente': cliente})
+
+
+def editarCompras(response, id):
+    compra = get_object_or_404(Compras, id=id)
+    if response.method == 'POST':
+        form = ComprasForm(response.POST, response.FILES, instance=compra)
+        if form.is_valid():
+            form.save()
+            messages.success(response, 'Compra atualizada com sucesso!')
+            return redirect('mostrarCompras')
+    else:
+        form = ComprasForm(instance=compra)
+    return render(response, 'editarCompras.html', {'form': form, 'compra': compra})
 
 
 def deletarCliente(response, id):

@@ -1,4 +1,6 @@
 from django.db import models
+from django.shortcuts import redirect
+from django.urls import reverse
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
@@ -33,9 +35,11 @@ class Compras(models.Model):
     def save(self, *args, **kwargs):
         if self.pagamento:
             produto = self.produtoComprado
-            if produto.quantidade >= 1:
+            if produto.quantidade >= self.quantidadeProdutos:
                 produto.quantidade -= self.quantidadeProdutos
                 produto.save()
+                super().save(*args, **kwargs)
             else:
-                raise ValueError("Estoque insuficiente para completar a compra.")
-        super().save(*args, **kwargs)
+                return redirect(reverse('erroEstoqueInsuficiente'))
+        else:
+            super().save(*args, **kwargs)
