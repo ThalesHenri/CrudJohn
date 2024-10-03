@@ -1,0 +1,40 @@
+# Ignorar a virtual environment
+venvTest/
+
+# Ignorar arquivos de cache do Python
+__pycache__/
+*.py[cod]
+
+# Ignorar banco de dados SQLite
+*db.sqlite3
+
+# Ignorar arquivos de configuração do IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignorar arquivos de ambiente
+.env
+media/
+
+# Ignorar arquivos de teste gerados
+*.coverage
+*.coverage.*
+nosetests.xml
+test-results.xml
+
+# Ignorar diretórios de build
+build/
+dist/
+*.egg-info/
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos de configuração de pacote
+*.egg
+
+# Ignorar arquivos temporários do sistema
+Thumbs.db
+.DS_Store
